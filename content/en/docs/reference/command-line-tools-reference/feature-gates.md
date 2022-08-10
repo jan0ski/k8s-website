@@ -69,7 +69,8 @@ For a reference to old feature gates that are removed, please refer to
 | `AggregatedDiscoveryEndpoint` | `false` | Alpha | 1.26 | |
 | `AnyVolumeDataSource` | `false` | Alpha | 1.18 | 1.23 |
 | `AnyVolumeDataSource` | `true` | Beta | 1.24 | |
-| `AppArmor` | `true` | Beta | 1.4 | |
+| `CPUManager` | `false` | Alpha | 1.8 | 1.9 |
+| `CPUManager` | `true` | Beta | 1.10 | |
 | `CPUManagerPolicyAlphaOptions` | `false` | Alpha | 1.23 | |
 | `CPUManagerPolicyBetaOptions` | `true` | Beta | 1.23 | |
 | `CPUManagerPolicyOptions` | `false` | Alpha | 1.22 | 1.22 |
@@ -391,10 +392,23 @@ Each feature gate is designed for enabling/disabling a specific feature:
   supports native HTTP caching with ETags containing all APIResources known to the API server.
 - `AnyVolumeDataSource`: Enable use of any custom resource as the `DataSource` of a
   {{< glossary_tooltip text="PVC" term_id="persistent-volume-claim" >}}.
-- `AppArmor`: Enable use of AppArmor mandatory access control for Pods running on Linux nodes.
-  See [AppArmor Tutorial](/docs/tutorials/security/apparmor/) for more details.
-- `ContainerCheckpoint`: Enables the kubelet `checkpoint` API.
-  See [Kubelet Checkpoint API](/docs/reference/node/kubelet-checkpoint-api/) for more details.
+- `AttachVolumeLimit`: Enable volume plugins to report limits on number of volumes
+  that can be attached to a node.
+  See [dynamic volume limits](/docs/concepts/storage/storage-limits/#dynamic-volume-limits)
+  for more details.
+- `BalanceAttachedNodeVolumes`: Include volume count on node to be considered for
+  balanced resource allocation while scheduling. A node which has closer CPU,
+  memory utilization, and volume count is favored by the scheduler while making decisions.
+- `BlockVolume`: Enable the definition and consumption of raw block devices in Pods.
+  See [Raw Block Volume Support](/docs/concepts/storage/persistent-volumes/#raw-block-volume-support)
+  for more details.
+- `BoundServiceAccountTokenVolume`: Migrate ServiceAccount volumes to use a projected volume
+  consisting of a ServiceAccountTokenVolumeProjection. Cluster admins can use metric
+  `serviceaccount_stale_tokens_total` to monitor workloads that are depending on the extended
+  tokens. If there are no such workloads, turn off extended tokens by starting `kube-apiserver` with
+  flag `--service-account-extend-token-expiration=false`.
+  Check [Bound Service Account Tokens](https://github.com/kubernetes/enhancements/blob/master/keps/sig-auth/1205-bound-service-account-tokens/README.md)
+  for more details.
 - `ControllerManagerLeaderMigration`: Enables Leader Migration for
   [kube-controller-manager](/docs/tasks/administer-cluster/controller-manager-leader-migration/#initial-leader-migration-configuration) and
   [cloud-controller-manager](/docs/tasks/administer-cluster/controller-manager-leader-migration/#deploy-cloud-controller-manager)
