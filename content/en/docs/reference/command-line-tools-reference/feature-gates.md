@@ -215,9 +215,38 @@ For a reference to old feature gates that are removed, please refer to
 | `AdvancedAuditing` | `false` | Alpha | 1.7 | 1.7 |
 | `AdvancedAuditing` | `true` | Beta | 1.8 | 1.11 |
 | `AdvancedAuditing` | `true` | GA | 1.12 | - |
-| `CPUManager` | `false` | Alpha | 1.8 | 1.9 |
-| `CPUManager` | `true` | Beta | 1.10 | 1.25 |
-| `CPUManager` | `true` | GA | 1.26 | - |
+| `AffinityInAnnotations` | `false` | Alpha | 1.6 | 1.7 |
+| `AffinityInAnnotations` | - | Deprecated | 1.8 | - |
+| `AllowExtTrafficLocalEndpoints` | `false` | Beta | 1.4 | 1.6 |
+| `AllowExtTrafficLocalEndpoints` | `true` | GA | 1.7 | - |
+| `AppArmor` | `true` | Beta | 1.4 | 1.25 |
+| `AppArmor` | `true` | GA | 1.26 | - |
+| `AttachVolumeLimit` | `false` | Alpha | 1.11 | 1.11 |
+| `AttachVolumeLimit` | `true` | Beta | 1.12 | 1.16 |
+| `AttachVolumeLimit` | `true` | GA | 1.17 | - |
+| `BalanceAttachedNodeVolumes` | `false` | Alpha | 1.11 | 1.21 |
+| `BalanceAttachedNodeVolumes` | `false` | Deprecated | 1.22 | |
+| `BlockVolume` | `false` | Alpha | 1.9 | 1.12 |
+| `BlockVolume` | `true` | Beta | 1.13 | 1.17 |
+| `BlockVolume` | `true` | GA | 1.18 | - |
+| `BoundServiceAccountTokenVolume` | `false` | Alpha | 1.13 | 1.20 |
+| `BoundServiceAccountTokenVolume` | `true` | Beta | 1.21 | 1.21 |
+| `BoundServiceAccountTokenVolume` | `true` | GA | 1.22 | - |
+| `ConfigurableFSGroupPolicy` | `false` | Alpha | 1.18 | 1.19 |
+| `ConfigurableFSGroupPolicy` | `true` | Beta | 1.20 | 1.22 |
+| `ConfigurableFSGroupPolicy` | `true` | GA | 1.23 | - |
+| `ControllerManagerLeaderMigration` | `false` | Alpha | 1.21 | 1.21 |
+| `ControllerManagerLeaderMigration` | `true` | Beta | 1.22 | 1.23 |
+| `ControllerManagerLeaderMigration` | `true` | GA | 1.24 | - |
+| `CRIContainerLogRotation` | `false` | Alpha | 1.10 | 1.10 |
+| `CRIContainerLogRotation` | `true` | Beta | 1.11 | 1.20 |
+| `CRIContainerLogRotation` | `true` | GA | 1.21 | - |
+| `CSIBlockVolume` | `false` | Alpha | 1.11 | 1.13 |
+| `CSIBlockVolume` | `true` | Beta | 1.14 | 1.17 |
+| `CSIBlockVolume` | `true` | GA | 1.18 | - |
+| `CSIDriverRegistry` | `false` | Alpha | 1.12 | 1.13 |
+| `CSIDriverRegistry` | `true` | Beta | 1.14 | 1.17 |
+| `CSIDriverRegistry` | `true` | GA | 1.18 | - |
 | `CSIInlineVolume` | `false` | Alpha | 1.15 | 1.15 |
 | `CSIInlineVolume` | `true` | Beta | 1.16 | 1.24 |
 | `CSIInlineVolume` | `true` | GA | 1.25 | - |
@@ -392,6 +421,8 @@ Each feature gate is designed for enabling/disabling a specific feature:
   supports native HTTP caching with ETags containing all APIResources known to the API server.
 - `AnyVolumeDataSource`: Enable use of any custom resource as the `DataSource` of a
   {{< glossary_tooltip text="PVC" term_id="persistent-volume-claim" >}}.
+- `AppArmor`: Enable use of AppArmor mandatory access control for Pods running on Linux nodes.
+  See [AppArmor Tutorial](/docs/tutorials/security/apparmor/) for more details.
 - `AttachVolumeLimit`: Enable volume plugins to report limits on number of volumes
   that can be attached to a node.
   See [dynamic volume limits](/docs/concepts/storage/storage-limits/#dynamic-volume-limits)
