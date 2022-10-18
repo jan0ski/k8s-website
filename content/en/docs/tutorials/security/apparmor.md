@@ -58,16 +58,13 @@ applications and cluster from other angles as well.
    Y
    ```
 
-   If the Kubelet contains AppArmor support (>= v1.4), it will refuse to run a Pod with AppArmor
-   options if the kernel module is not enabled.
-
   {{< note >}}
   Ubuntu carries many AppArmor patches that have not been merged into the upstream Linux
   kernel, including patches that add additional hooks and features. Kubernetes has only been
   tested with the upstream version, and does not promise support for other features.
   {{< /note >}}
 
-3. Container runtime supports AppArmor -- Currently all common Kubernetes-supported container
+3. Container runtime supports AppArmor -- All common Kubernetes-supported container
    runtimes should support AppArmor, like {{< glossary_tooltip term_id="docker">}},
    {{< glossary_tooltip term_id="cri-o" >}} or {{< glossary_tooltip term_id="containerd" >}}.
    Please refer to the corresponding runtime documentation and verify that the cluster fulfills
@@ -341,7 +338,7 @@ kubectl delete pod default-pod --wait --now
 
 ### Setting up nodes with profiles
 
-Kubernetes does not currently provide any native mechanisms for loading AppArmor profiles onto
+Kubernetes does not provide any native mechanisms for loading AppArmor profiles onto
 nodes. There are lots of ways to set up the profiles though, such as:
 
 * Through a [DaemonSet](/docs/concepts/workloads/controllers/daemonset/) that runs a Pod on each node to
@@ -358,7 +355,7 @@ class of profiles) on the node, and use a
 [node selector](/docs/concepts/scheduling-eviction/assign-pod-node/) to ensure the Pod is run on a
 node with the required profile.
 
-### Authoring Profiles
+## Authoring Profiles
 
 Getting AppArmor profiles specified correctly can be a tricky business. Fortunately there are some
 tools to help with that:
@@ -373,6 +370,25 @@ To debug problems with AppArmor, you can check the system logs to see what, spec
 denied. AppArmor logs verbose messages to `dmesg`, and errors can usually be found in the system
 logs or through `journalctl`. More information is provided in
 [AppArmor failures](https://gitlab.com/apparmor/apparmor/wikis/AppArmor_Failures).
+
+## Profile Reference
+
+Any profile reference format outside of the below is invalid.
+
+`RuntimeDefault`
+: Refers to the default runtime profile.
+- Equivalent to not specifying a profile, except it still
+    requires AppArmor to be enabled.
+- In practice, many container runtimes use the same OCI default profile, defined here:
+    https://github.com/containers/common/blob/main/pkg/apparmor/apparmor_linux_template.go
+
+`Localhost`
+: Refers to a profile loaded on the node (localhost) by name.
+- The possible profile names are detailed in the
+  [core policy reference](https://gitlab.com/apparmor/apparmor/wikis/AppArmor_Core_Policy_Reference#profile-names-and-attachment-specifications).
+
+`Unconfined`
+: This effectively disables AppArmor on the container.
 
 ## {{% heading "whatsnext" %}}
 
