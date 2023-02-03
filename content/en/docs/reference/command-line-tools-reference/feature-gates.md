@@ -69,8 +69,6 @@ For a reference to old feature gates that are removed, please refer to
 | `AggregatedDiscoveryEndpoint` | `false` | Alpha | 1.26 | |
 | `AnyVolumeDataSource` | `false` | Alpha | 1.18 | 1.23 |
 | `AnyVolumeDataSource` | `true` | Beta | 1.24 | |
-| `CPUManager` | `false` | Alpha | 1.8 | 1.9 |
-| `CPUManager` | `true` | Beta | 1.10 | |
 | `CPUManagerPolicyAlphaOptions` | `false` | Alpha | 1.23 | |
 | `CPUManagerPolicyBetaOptions` | `true` | Beta | 1.23 | |
 | `CPUManagerPolicyOptions` | `false` | Alpha | 1.22 | 1.22 |
@@ -215,38 +213,9 @@ For a reference to old feature gates that are removed, please refer to
 | `AdvancedAuditing` | `false` | Alpha | 1.7 | 1.7 |
 | `AdvancedAuditing` | `true` | Beta | 1.8 | 1.11 |
 | `AdvancedAuditing` | `true` | GA | 1.12 | - |
-| `AffinityInAnnotations` | `false` | Alpha | 1.6 | 1.7 |
-| `AffinityInAnnotations` | - | Deprecated | 1.8 | - |
-| `AllowExtTrafficLocalEndpoints` | `false` | Beta | 1.4 | 1.6 |
-| `AllowExtTrafficLocalEndpoints` | `true` | GA | 1.7 | - |
-| `AppArmor` | `true` | Beta | 1.4 | 1.25 |
-| `AppArmor` | `true` | GA | 1.26 | - |
-| `AttachVolumeLimit` | `false` | Alpha | 1.11 | 1.11 |
-| `AttachVolumeLimit` | `true` | Beta | 1.12 | 1.16 |
-| `AttachVolumeLimit` | `true` | GA | 1.17 | - |
-| `BalanceAttachedNodeVolumes` | `false` | Alpha | 1.11 | 1.21 |
-| `BalanceAttachedNodeVolumes` | `false` | Deprecated | 1.22 | |
-| `BlockVolume` | `false` | Alpha | 1.9 | 1.12 |
-| `BlockVolume` | `true` | Beta | 1.13 | 1.17 |
-| `BlockVolume` | `true` | GA | 1.18 | - |
-| `BoundServiceAccountTokenVolume` | `false` | Alpha | 1.13 | 1.20 |
-| `BoundServiceAccountTokenVolume` | `true` | Beta | 1.21 | 1.21 |
-| `BoundServiceAccountTokenVolume` | `true` | GA | 1.22 | - |
-| `ConfigurableFSGroupPolicy` | `false` | Alpha | 1.18 | 1.19 |
-| `ConfigurableFSGroupPolicy` | `true` | Beta | 1.20 | 1.22 |
-| `ConfigurableFSGroupPolicy` | `true` | GA | 1.23 | - |
-| `ControllerManagerLeaderMigration` | `false` | Alpha | 1.21 | 1.21 |
-| `ControllerManagerLeaderMigration` | `true` | Beta | 1.22 | 1.23 |
-| `ControllerManagerLeaderMigration` | `true` | GA | 1.24 | - |
-| `CRIContainerLogRotation` | `false` | Alpha | 1.10 | 1.10 |
-| `CRIContainerLogRotation` | `true` | Beta | 1.11 | 1.20 |
-| `CRIContainerLogRotation` | `true` | GA | 1.21 | - |
-| `CSIBlockVolume` | `false` | Alpha | 1.11 | 1.13 |
-| `CSIBlockVolume` | `true` | Beta | 1.14 | 1.17 |
-| `CSIBlockVolume` | `true` | GA | 1.18 | - |
-| `CSIDriverRegistry` | `false` | Alpha | 1.12 | 1.13 |
-| `CSIDriverRegistry` | `true` | Beta | 1.14 | 1.17 |
-| `CSIDriverRegistry` | `true` | GA | 1.18 | - |
+| `CPUManager` | `false` | Alpha | 1.8 | 1.9 |
+| `CPUManager` | `true` | Beta | 1.10 | 1.25 |
+| `CPUManager` | `true` | GA | 1.26 | - |
 | `CSIInlineVolume` | `false` | Alpha | 1.15 | 1.15 |
 | `CSIInlineVolume` | `true` | Beta | 1.16 | 1.24 |
 | `CSIInlineVolume` | `true` | GA | 1.25 | - |
@@ -421,25 +390,8 @@ Each feature gate is designed for enabling/disabling a specific feature:
   supports native HTTP caching with ETags containing all APIResources known to the API server.
 - `AnyVolumeDataSource`: Enable use of any custom resource as the `DataSource` of a
   {{< glossary_tooltip text="PVC" term_id="persistent-volume-claim" >}}.
-- `AppArmor`: Enable use of AppArmor mandatory access control for Pods running on Linux nodes.
-  See [AppArmor Tutorial](/docs/tutorials/security/apparmor/) for more details.
-- `AttachVolumeLimit`: Enable volume plugins to report limits on number of volumes
-  that can be attached to a node.
-  See [dynamic volume limits](/docs/concepts/storage/storage-limits/#dynamic-volume-limits)
-  for more details.
-- `BalanceAttachedNodeVolumes`: Include volume count on node to be considered for
-  balanced resource allocation while scheduling. A node which has closer CPU,
-  memory utilization, and volume count is favored by the scheduler while making decisions.
-- `BlockVolume`: Enable the definition and consumption of raw block devices in Pods.
-  See [Raw Block Volume Support](/docs/concepts/storage/persistent-volumes/#raw-block-volume-support)
-  for more details.
-- `BoundServiceAccountTokenVolume`: Migrate ServiceAccount volumes to use a projected volume
-  consisting of a ServiceAccountTokenVolumeProjection. Cluster admins can use metric
-  `serviceaccount_stale_tokens_total` to monitor workloads that are depending on the extended
-  tokens. If there are no such workloads, turn off extended tokens by starting `kube-apiserver` with
-  flag `--service-account-extend-token-expiration=false`.
-  Check [Bound Service Account Tokens](https://github.com/kubernetes/enhancements/blob/master/keps/sig-auth/1205-bound-service-account-tokens/README.md)
-  for more details.
+- `ContainerCheckpoint`: Enables the kubelet `checkpoint` API.
+  See [Kubelet Checkpoint API](/docs/reference/node/kubelet-checkpoint-api/) for more details.
 - `ControllerManagerLeaderMigration`: Enables Leader Migration for
   [kube-controller-manager](/docs/tasks/administer-cluster/controller-manager-leader-migration/#initial-leader-migration-configuration) and
   [cloud-controller-manager](/docs/tasks/administer-cluster/controller-manager-leader-migration/#deploy-cloud-controller-manager)

@@ -5,12 +5,12 @@ reviewers:
 title: Restrict a Container's Access to Resources with AppArmor
 content_type: tutorial
 weight: 30
-min-kubernetes-server-version: v1.26
+min-kubernetes-server-version: v1.27
 ---
 
 <!-- overview -->
 
-{{< feature-state for_k8s_version="v1.26" state="stable" >}}
+{{< feature-state for_k8s_version="v1.27" state="stable" >}}
 
 
 AppArmor is a Linux kernel security module that supplements the standard Linux user and group based
@@ -44,7 +44,7 @@ applications and cluster from other angles as well.
 
 
 1. {{< version-check >}}
-   If your Kubernetes version is older than 1.26, see
+   If your Kubernetes version is older than 1.27, see
    [Upgrade A Cluster](https://kubernetes.io/docs/tasks/administer-cluster/cluster-upgrade/) for steps
    on how to upgrade your cluster to a stable version.
 
